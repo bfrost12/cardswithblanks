@@ -1,4 +1,4 @@
-app.controller('LobbyCtrl', function($scope, $state, Socket, games){
+app.controller('LobbyCtrl', function($scope, $state, Socket, Setup, games){
 	$scope.games = games
 
 	$scope.joinGame = function(playerName, gameID) {
@@ -8,6 +8,13 @@ app.controller('LobbyCtrl', function($scope, $state, Socket, games){
 		})
 	}
 	Socket.on('joined', function(data){
+		Setup.setName(data.name);
+		Setup.setGame(data.game);
+		Setup.setRoom(data.room);
 		$state.go('play', {id: data.room})
+	});
+
+	Socket.on('response', function(data){
+		console.log(data.message);
 	});
 });

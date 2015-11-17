@@ -1,7 +1,9 @@
-/*app.controller('GameCtrl', function($scope, $state, Socket){
+app.controller('GameCtrl', function($scope, $state, Socket, Setup){
 	$scope.message = '';
 	$scope.messages = [];
-	$scope.game = game;
+	$scope.game = Setup.getGame();
+	$scope.name = Setup.getName();
+	$scope.room = Setup.getRoom();
 
 	//Chat Functions
 	$scope.sendMessage = function () {
@@ -30,4 +32,4 @@
 		$scope.messages.push(data.message);
 		$scope.game = data.game;
 	})
-});*/
+});

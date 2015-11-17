@@ -94,25 +94,22 @@ function createPlayer(name){
 function createGame(settings) { 
 	//creates a new game & saves to database
 	var game = new Game(settings);
-	if (!settings.leader) {
-		settings.leader = randomName();
-	}
-	console.log(game);
-	var leader = createPlayer(settings.leader)
-
-	console.log(player);
-
+	var leader = createPlayer(game.leader)
+	
 	game.players.push(leader);
 	game.addCards(settings.numRounds); 
 	game.inProgress = true;
 
 	allGames.push(game);
-	console.log(allGames)
 
 	//and creates a socket.io room for that game, sends it back to the client
 	var thisGameId = game.id;
 	var theLeader = game.leader;
-	this.emit('gameCreated', {game: game, id: thisGameId, name: theLeader});
+	this.emit('gameCreated', {
+		game: game, 
+		room: thisGameId, 
+		name: theLeader
+	});
 	
 	//join the room you created and wait for players
 	this.join(thisGameId);
@@ -124,17 +121,28 @@ function randomName(){
 }
 
 function joinGame(data) {
-	this.join(data.room);
-
 	if (!data.player){
 		data.player = randomName();
 	}
 
-	var newPlayer = Player.newPlayer(data.player)
-
 	var theGame = _.find(allGames, {id: data.room});
+	if (!theGame) {
+		this.emit('response', {message: 'game not found.'})
+		return;
+	}
+	console.log(theGame.players.length);
+	console.log(theGame.maxPlayers);
+	if (theGame.players.length == theGame.maxPlayers) {
+		this.emit('response', {message: 'The game has reached capacity. Joining as a spectator.'})
+	} 
+	else {
+		var newPlayer = Player.newPlayer(data.player)
+		if(theGame.players.indexOf(newPlayer) === -1) { //add the player to the game if they're not already part of it
+			theGame.players.push(newPlayer);
+		}
+	}
 
-	theGame.players.push(newPlayer);
+	this.join(data.room);
 
 	this.emit('joined', { //Join the game
 		room: data.room,
@@ -147,9 +155,10 @@ function joinGame(data) {
 			user: 'GameBot',
 			text: data.player+' has joined the game!'
 		},
-   		game: theGame
+			game: theGame
 	});
-}
+}	
+
 
 function getGames(){
 	this.emit('gotGameList', {games: allGames});
@@ -160,7 +169,7 @@ function getGame(data){
 }
 
 function sendMessage(data){
-	this.broadcast.emit('message', {
+	this.broadcast.to(data.room).emit('message', {
 	       user: data.name,
 	       text: data.message
 	});
