@@ -1,0 +1,24 @@
+<div class="ui inverted form">
+   <div class="five wide field">
+      <label for="player-name">Player Name</label>
+      <div class="ui left icon input">
+        <input type="text" placeholder="Enter your player name!" ng-model="newPlayer"> 
+        <i class="add user icon"></i>
+      </div>
+    </div>
+</div>
+
+<div class="ui inverted segment">
+  <div class="ui inverted relaxed divided list">
+    <div class="item" ng-repeat="game in games">
+      <div class="content">
+        <div class="header">{{game.name}}</div>
+        <br>
+        Leader: {{game.leader}} | Rounds: {{game.numRounds}} | Max Players: {{game.maxPlayers}}
+        <div class="right floated content">
+            <div class="ui inverted button" ng-click="joinGame(newPlayer, game.id)">Join This Game</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="ui purple card">
+	<div class="content">
+		<div class="header">{{title}}</div>
+		<div class="meta">{{points}} Points</div>
+		<div class="description">
+			<p>{{prompt}}</p>
+		</div>
+	</div>
+</div>
+
+<div class="ui three column grid">
+	<div class="column" ng-repeat="answer in answers">
+		<div class="ui segment">
+			<div class="ui special cards">
+			  <div class="card">
+			    <div class="blurring dimmable image">
+			      <img src="https://media.giphy.com/media/2yAjmbCfYcQUw/giphy.gif">
+			    </div>
+			    <div class="content">
+			    	<div class="center">
+			      	  <div class="ui secondary button" ng-click="castVote()">Vote!</div>
+			        </div>
+			    </div>
+			 </div>
+			</div>
+		</div>
+	</div> 
+</div>

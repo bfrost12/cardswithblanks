@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/" />
+    <title>Cards__With__Blanks</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="stylesheet" type="text/css" href="semantic-ui/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="semantic-ui/dist/components/table.min.css">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="semantic-ui/dist/semantic.min.js"></script>
+    <script src="/lodash/index.js"></script>
+    <script src="/angular/angular.js"></script>
+    <script src="/angular-animate/angular-animate.js"></script>
+    <script src="/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/angular-ui-bootstrap/ui-bootstrap.js"></script>
+    <script src="/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/main.js"></script>
+</head>
+<body ng-app="FullstackGeneratedApp">
+     <div class="ui attached stackable menu">
+      <div class="ui container">
+        <a class="item" ui-sref="home">
+          <i class="home icon"></i> Home
+        </a>
+        <a class="item" ui-sref="join">
+          <i class="chevron circle right icon"></i> Join a Game
+        </a>
+        <a class="item" ui-sref="about">
+             <i class="info circle icon"></i> About
+        </a>
+        <a class="right item" ui-sref="create" ng-show="!user">
+          <i class="add user icon"></i> New Game
+        </a>
+    </div>
+</div>
+    <div id="main" ui-view></div>
+</body>
+</html>

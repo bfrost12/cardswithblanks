@@ -1,0 +1,17 @@
+<div class="ui segment">
+  <div class="ui grid">
+    <div class="six wide column">
+      <div class="ui middle aligned selection list">
+        <div class="item" ng-repeat="player in players">
+          <img class="ui avatar image" src="https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/questionmark.png">
+          <div class="content">
+            <div class="header">{{player.name}}</div>
+          </div>
+          <div class="right floated content">
+          {{player.score}} Points
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  

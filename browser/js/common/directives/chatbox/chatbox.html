@@ -1,0 +1,13 @@
+<div class="ui segment">
+	<p ng-repeat="message in messages">{{message.user}}: {{message.text}}</p>
+</div>
+<form id="chat-box">
+	<div class="ten wide inline field">
+		<label for="message"></label>
+		<div class="ui left icon input">
+			<input type="text" placeholder="Enter message..." ng-model="message"> 
+			<i class="comment icon"></i>
+		</div>
+		<button type="submit" class="ui secondary small submit button" ng-click="sendMessage()">Send</button>
+	</div>
+</form>

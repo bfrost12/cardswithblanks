@@ -1,0 +1,65 @@
+<form id="create-game" name="createGameForm" ng-submit="createGame(settings)">
+
+<div class="ui inverted segment">
+	  <div class="ui inverted form">
+	    <div class="two fields">
+	    <label for="settings">Settings</label>
+	      <div class="field">
+	        <label for="rounds">Number of Rounds:</label>
+			    <select class="ui dropdown" ng-model="settings.numRounds">
+			      <option value="">No. Rounds</option>
+			      <!-- <option ng-repeat="i in range(20) track by $index" value="$index + 1" ng-model="settings.numRounds">{{$index + 1}}</option> -->
+			      <option value="1">1</option>
+			      <option value="2">2</option>
+			      <option value="3">3</option>
+			      <option value="4">4</option>
+			      <option value="5">5</option>
+			      <option value="6">6</option>
+			      <option value="7">7</option>
+			      <option value="8">8</option>
+			      <option value="9">9</option>
+			      <option value="10">10</option>
+			      <option value="11">11</option>
+			      <option value="12">12</option>
+			      <option value="13">13</option>
+			      <option value="14">14</option>
+			      <option value="15">15</option>
+			      <option value="16">16</option>
+			      <option value="17">17</option>
+			      <option value="18">18</option>
+			      <option value="19">19</option>
+			      <option value="20">20</option>
+			    </select>
+		  </div>
+	    <div class="field">
+	        <label for="rounds">Max Players:</label>
+			    <select class="ui dropdown" ng-model="settings.maxPlayers">
+			      <option value="">Max Players</option>
+			      <!-- <option ng-repeat="i in range(6) track by $index" value="$index + 1" ng-model="settings.maxPlayers">{{$index + 1}}</option> -->
+			      <option value="1">1</option>
+			      <option value="2">2</option>
+			      <option value="3">3</option>
+			      <option value="4">4</option>
+			      <option value="5">5</option>
+			      <option value="6">6</option>
+			    </select>
+	      </div>
+	    </div>
+	    <div class="five wide field">
+			<label for="player-name">Player Name</label>
+			<div class="ui left icon input">
+				<input type="text" placeholder="Get Creative!" ng-model="settings.leader"> 
+				<i class="add user icon"></i>
+			</div>
+		</div>
+		<div class="five wide field">
+			<label for="player-name">Game Title</label>
+			<div class="ui left icon input">
+				<input type="text" placeholder="Name your game!" ng-model="settings.name"> 
+				<i class="add user icon"></i>
+			</div>
+		</div>
+	<button type="submit" class="ui small inverted submit button">Play!</button>
+	</div>
+</div>
+</form>
